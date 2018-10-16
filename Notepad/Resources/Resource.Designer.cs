@@ -2522,6 +2522,9 @@ namespace Notepad
 			// aapt resource value: 0x7f0800b6
 			public const int encoding_ascii = 2131230902;
 			
+			// aapt resource value: 0x7f0800b8
+			public const int encoding_hex = 2131230904;
+			
 			// aapt resource value: 0x7f0800b7
 			public const int encoding_sjis = 2131230903;
 			
@@ -3285,6 +3288,9 @@ namespace Notepad
 			
 			// aapt resource value: 0x7f09002d
 			public const int encoding_ascii = 2131296301;
+			
+			// aapt resource value: 0x7f09002f
+			public const int encoding_hex = 2131296303;
 			
 			// aapt resource value: 0x7f09002e
 			public const int encoding_sjis = 2131296302;

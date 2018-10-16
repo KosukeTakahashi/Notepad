@@ -3012,6 +3012,7 @@ containing a value of this type.
         public static final int edit_query=0x7f08007e;
         public static final int editor=0x7f08008d;
         public static final int encoding_ascii=0x7f0800b6;
+        public static final int encoding_hex=0x7f0800b8;
         public static final int encoding_sjis=0x7f0800b7;
         public static final int encoding_utf8=0x7f0800b5;
         public static final int end=0x7f080030;
@@ -3255,6 +3256,7 @@ containing a value of this type.
         public static final int bottom_sheet_behavior=0x7f09001f;
         public static final int character_counter_pattern=0x7f090020;
         public static final int encoding_ascii=0x7f09002d;
+        public static final int encoding_hex=0x7f09002f;
         public static final int encoding_sjis=0x7f09002e;
         public static final int encoding_utf8=0x7f09002c;
         public static final int lines_counter=0x7f09002b;

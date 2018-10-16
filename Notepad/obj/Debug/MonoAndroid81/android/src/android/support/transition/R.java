@@ -3012,6 +3012,7 @@ containing a value of this type.
         public static int edit_query=0x7f08007e;
         public static int editor=0x7f08008d;
         public static int encoding_ascii=0x7f0800b6;
+        public static int encoding_hex=0x7f0800b8;
         public static int encoding_sjis=0x7f0800b7;
         public static int encoding_utf8=0x7f0800b5;
         public static int end=0x7f080030;
@@ -3210,6 +3211,7 @@ containing a value of this type.
     }
     public static final class menu {
         public static int menu_main=0x7f0e0000;
+        public static int menu_no_open_file=0x7f0e0001;
     }
     public static final class mipmap {
         public static int ic_launcher=0x7f030000;
@@ -3254,6 +3256,7 @@ containing a value of this type.
         public static int bottom_sheet_behavior=0x7f09001f;
         public static int character_counter_pattern=0x7f090020;
         public static int encoding_ascii=0x7f09002d;
+        public static int encoding_hex=0x7f09002f;
         public static int encoding_sjis=0x7f09002e;
         public static int encoding_utf8=0x7f09002c;
         public static int lines_counter=0x7f09002b;

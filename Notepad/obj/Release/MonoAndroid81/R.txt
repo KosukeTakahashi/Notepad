@@ -798,6 +798,7 @@ int id disableHome 0x7f080020
 int id edit_query 0x7f08007e
 int id editor 0x7f08008d
 int id encoding_ascii 0x7f0800b6
+int id encoding_hex 0x7f0800b8
 int id encoding_sjis 0x7f0800b7
 int id encoding_utf8 0x7f0800b5
 int id end 0x7f080030
@@ -1031,6 +1032,7 @@ int string appbar_scrolling_view_behavior 0x7f09001e
 int string bottom_sheet_behavior 0x7f09001f
 int string character_counter_pattern 0x7f090020
 int string encoding_ascii 0x7f09002d
+int string encoding_hex 0x7f09002f
 int string encoding_sjis 0x7f09002e
 int string encoding_utf8 0x7f09002c
 int string lines_counter 0x7f09002b

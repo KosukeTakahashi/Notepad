@@ -4,6 +4,14 @@ namespace Notepad
 {
     class Utils
     {
+        public enum Encoding
+        {
+            UTF8,
+            ASCII,
+            SJIS,
+            HEX
+        }
+
         public static int CountLines(string str)
         {
             var split = str.Split('\n');

@@ -6,6 +6,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
@@ -23,7 +24,7 @@ namespace Notepad
         private static readonly int REQUEST_CODE_WRITE_FILE = 43;
 
         private Android.Net.Uri FileUri      = null;
-        private Encoding        FileEncoding = Encoding.UTF8;
+        private Utils.Encoding  FileEncoding = Utils.Encoding.UTF8;
         private bool            IsModified   = false;
         private int             CurrentLines = 0;
 
@@ -56,7 +57,9 @@ namespace Notepad
             
             if (Intent.Action != Intent.ActionMain)
                 FileUri = Intent.Data;
-            ReadFile();
+
+            if (FileUri != null)
+                SetContent(ReadFile());
         }
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
@@ -68,7 +71,7 @@ namespace Notepad
                 if (data != null)
                 {
                     FileUri = data.Data;
-                    FileEncoding = Encoding.UTF8;
+                    FileEncoding = Utils.Encoding.UTF8;
                     IsModified = false;
                 }
             }
@@ -79,10 +82,52 @@ namespace Notepad
                     var editor = FindViewById<EditText>(Resource.Id.editor);
                     var uri = data.Data;
                     var stream = ContentResolver.OpenOutputStream(uri);
-                    var writer = new StreamWriter(stream, FileEncoding);
+                    //var writer = new StreamWriter(stream, FileEncoding);
+                    StreamWriter writer = null;
 
-                    writer.Write(editor.Text);
-                    writer.Close();
+                    switch (FileEncoding)
+                    {
+                        case Utils.Encoding.UTF8:
+                            writer = new StreamWriter(stream, Encoding.UTF8);
+                            writer.Write(editor.Text);
+                            break;
+
+                        case Utils.Encoding.ASCII:
+                            writer = new StreamWriter(stream, Encoding.ASCII);
+                            writer.Write(editor.Text);
+                            break;
+
+                        case Utils.Encoding.SJIS:
+                            writer = new StreamWriter(stream, Encoding.GetEncoding(932));
+                            writer.Write(editor.Text);
+                            break;
+
+                        case Utils.Encoding.HEX:
+                            var content = editor.Text;
+                            content.Replace("\n", "");
+
+                            var strBytes = content.Split(' ');
+                            var bytes = new byte[strBytes.Length];
+
+                            for (int i = 0; i < strBytes.Length - 1; i++)
+                            {
+                                try
+                                {
+                                    bytes[i] = byte.Parse(strBytes[i], System.Globalization.NumberStyles.HexNumber);
+                                }
+                                catch (FormatException)
+                                {
+                                    Snackbar.Make(editor, string.Format("Cannot save invalid hex data\nbyte[{0}]: {1}", i, bytes[i]), Snackbar.LengthShort).Show();
+                                }
+                            }
+
+                            var bw = new BinaryWriter(stream, Encoding.UTF8);
+                            bw.Write(bytes);
+
+                            break;
+                    }
+
+                    writer?.Close();
 
                     FileUri = uri;
                 }
@@ -124,18 +169,35 @@ namespace Notepad
                     return true;
 
                 case Resource.Id.encoding_utf8:
-                    FileEncoding = Encoding.UTF8;
-                    ReadFile();
+                    FileEncoding = Utils.Encoding.UTF8;
+                    
+                    if (FileUri != null)
+                        SetContent(ReadFile());
+
                     return true;
 
                 case Resource.Id.encoding_ascii:
-                    FileEncoding = Encoding.ASCII;
-                    ReadFile();
+                    FileEncoding = Utils.Encoding.ASCII;
+
+                    if (FileUri != null)
+                        SetContent(ReadFile());
+
                     return true;
 
                 case Resource.Id.encoding_sjis:
-                    FileEncoding = Encoding.GetEncoding(932); // Shift-JIS
-                    ReadFile();
+                    FileEncoding = Utils.Encoding.SJIS;
+
+                    if (FileUri != null)
+                        SetContent(ReadFile());
+
+                    return true;
+
+                case Resource.Id.encoding_hex:
+                    FileEncoding = Utils.Encoding.HEX;
+
+                    if (FileUri != null)
+                        SetContent(ReadFile());
+
                     return true;
 
                 default:
@@ -158,40 +220,114 @@ namespace Notepad
                 IsModified = true;
 
                 var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-                //toolbar.Subtitle += "*";
                 toolbar.Title += "・";
             }
         }
 
-        private void ReadFile()
+        private string ReadFile()
         {
-            if (FileUri != null)
+            var content = "";
+
+            if (FileUri.Scheme == "file")
             {
-                var editor = FindViewById<EditText>(Resource.Id.editor);
-                var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
-                var content = "";
+                StreamReader reader = null;
 
-                if (FileUri.Scheme == "file")
+                switch (FileEncoding)
                 {
-                    var reader = new StreamReader(FileUri.Path, FileEncoding);
+                    case Utils.Encoding.UTF8:
+                        reader = new StreamReader(FileUri.Path, Encoding.UTF8);
+                        content = reader.ReadToEnd();
+                        break;
 
-                    content = reader.ReadToEnd();
-                    reader.Close();
+                    case Utils.Encoding.ASCII:
+                        reader = new StreamReader(FileUri.Path, Encoding.ASCII);
+                        content = reader.ReadToEnd();
+                        break;
+
+                    case Utils.Encoding.SJIS:
+                        reader = new StreamReader(FileUri.Path, Encoding.GetEncoding(932)); //Shift-JIS
+                        content = reader.ReadToEnd();
+                        break;
+
+                    case Utils.Encoding.HEX:
+                        var stream = new FileStream(FileUri.Path, FileMode.Open);
+                        var ms = new MemoryStream();
+
+                        stream.CopyTo(ms);
+
+                        var bytes = ms.ToArray();
+                        for (int i = 0; i < bytes.Length; i++)
+                        {
+                            if (0 < i && i % 5 == 0)
+                                content += "\n";
+
+                            content += string.Format("{0} ", bytes[i].ToString("X2"));
+                        }
+
+                        ms.Close();
+                        stream.Close();
+
+                        break;
                 }
-                else
-                {
-                    var stream = ContentResolver.OpenInputStream(FileUri);
-                    var reader = new StreamReader(stream, FileEncoding);
-
-                    content = reader.ReadToEnd();
-                    reader.Close();
-                }
-
-                editor.Text = content;
-                toolbar.Title = "Notepad";
-                toolbar.Subtitle = FileUri.Path;
-                IsModified = false;
+                
+                reader?.Close();
             }
+            else
+            {
+                var stream = ContentResolver.OpenInputStream(FileUri);
+                StreamReader reader = null;
+
+                switch (FileEncoding)
+                {
+                    case Utils.Encoding.UTF8:
+                        reader = new StreamReader(stream, Encoding.UTF8);
+                        content = reader.ReadToEnd();
+                        break;
+
+                    case Utils.Encoding.ASCII:
+                        reader = new StreamReader(stream, Encoding.ASCII);
+                        content = reader.ReadToEnd();
+                        break;
+
+                    case Utils.Encoding.SJIS:
+                        reader = new StreamReader(stream, Encoding.GetEncoding(932));
+                        content = reader.ReadToEnd();
+                        break;
+
+                    case Utils.Encoding.HEX:
+                        var ms = new MemoryStream();
+                        stream.CopyTo(ms);
+
+                        var bytes = ms.ToArray();
+                        for (int i = 0; i < bytes.Length; i++)
+                        {
+                            if (0 < i && i % 5 == 0)
+                                content += "\n";
+
+                            content += string.Format("{0} ", bytes[i].ToString("X2"));
+                        }
+
+                        ms.Close();
+
+                        break;
+                }
+                
+                reader?.Close();
+                stream.Close();
+            }
+
+            return content;
+        }
+
+        private void SetContent(string content)
+        {
+            var editor = FindViewById<EditText>(Resource.Id.editor);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            var appName = Resources.GetString(Resource.String.app_name);
+
+            editor.Text = content;
+            toolbar.Title = appName;
+            toolbar.Subtitle = FileUri.Path;
         }
     }
 }

@@ -33,6 +33,12 @@
                 android:orderInCategory="110"
                 android:title="@string/encoding_sjis"
                 app:showAsAction="never"/>
+
+            <item
+                android:id="@+id/encoding_hex"
+                android:orderInCategory="110"
+                android:title="@string/encoding_hex"
+                app:showAsAction="never"/>
         </menu>
     </item>
 </menu>

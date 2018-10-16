@@ -72,5 +72,6 @@ C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Release\MonoAndroid81\linksrc\I18
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Release\MonoAndroid81\linksrc\I18N.CJK.pdb
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Release\MonoAndroid81\android\assets\I18N.CJK.pdb
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Release\MonoAndroid81\android\assets\I18N.pdb
+C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Release\MonoAndroid81\Notepad.csprojAssemblyReference.cache
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\bin\Release\Notepad.dll
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Release\MonoAndroid81\linksrc\Notepad.dll.mdb

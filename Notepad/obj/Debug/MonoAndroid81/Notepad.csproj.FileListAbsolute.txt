@@ -1,8 +1,9 @@
+C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\Notepad.csprojAssemblyReference.cache
+C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\res.flag
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\bin\Debug\Notepad.dll
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\bin\Debug\Notepad.pdb
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\bin\Debug\Notepad.Notepad.apk
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\bin\Debug\Notepad.Notepad-Signed.apk
-C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\res.flag
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\Notepad.csproj.CoreCompileInputs.cache
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\Notepad.dll
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\Notepad.pdb
@@ -32,6 +33,7 @@ C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\res\mipmap-xx
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\res\mipmap-xxxhdpi\ic_launcher.png
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\res\mipmap-xxxhdpi\ic_launcher_foreground.png
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\res\mipmap-xxxhdpi\ic_launcher_round.png
+C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\res\menu\menu_no_open_file.xml
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\R.cs.flag
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\R.txt
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\uploadflags.txt
@@ -56,7 +58,6 @@ C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\linksrc\Syste
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\linksrc\System.Runtime.Serialization.pdb
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\linksrc\System.ServiceModel.Internals.pdb
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\linksrc\Mono.Security.pdb
-C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\Notepad.csprojAssemblyReference.cache
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\android\assets\Mono.Android.pdb
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\android\assets\Mono.Security.pdb
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\android\assets\mscorlib.pdb
@@ -68,5 +69,4 @@ C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\android\asset
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\android\assets\System.Runtime.Serialization.pdb
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\android\assets\System.ServiceModel.Internals.pdb
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\android\assets\System.Xml.pdb
-C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\res\menu\menu_no_open_file.xml
 C:\Users\Kosuke\Develop\C#\Notepad\Notepad\obj\Debug\MonoAndroid81\linksrc\Notepad.pdb
