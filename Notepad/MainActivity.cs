@@ -104,7 +104,7 @@ namespace Notepad
 
                         case Utils.Encoding.HEX:
                             var content = editor.Text;
-                            content.Replace("\n", "");
+                            content.Replace(" \n", " ");
 
                             var strBytes = content.Split(' ');
                             var bytes = new byte[strBytes.Length];
