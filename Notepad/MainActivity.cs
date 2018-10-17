@@ -104,10 +104,10 @@ namespace Notepad
 
                         case Utils.Encoding.HEX:
                             var content = editor.Text;
-                            content.Replace(" \n", " ");
-
+                            content = content.Replace("\n", " ");
+                            
                             var strBytes = content.Split(' ');
-                            var bytes = new byte[strBytes.Length];
+                            var bytes = new byte[strBytes.Length - 1];
 
                             for (int i = 0; i < strBytes.Length - 1; i++)
                             {
@@ -117,7 +117,7 @@ namespace Notepad
                                 }
                                 catch (FormatException)
                                 {
-                                    Snackbar.Make(editor, string.Format("Cannot save invalid hex data\nbyte[{0}]: {1}", i, bytes[i]), Snackbar.LengthShort).Show();
+                                    Snackbar.Make(editor, string.Format("Cannot save invalid hex data\nbyte[{0}]: {1}", i, strBytes[i]), Snackbar.LengthIndefinite).Show();
                                 }
                             }
 
@@ -258,10 +258,12 @@ namespace Notepad
                         var bytes = ms.ToArray();
                         for (int i = 0; i < bytes.Length; i++)
                         {
-                            if (0 < i && i % 5 == 0)
-                                content += "\n";
+                            content += string.Format("{0}", bytes[i].ToString("X2"));
 
-                            content += string.Format("{0} ", bytes[i].ToString("X2"));
+                            if (0 < i && i % 5 == 4)
+                                content += "\n";
+                            else
+                                content += " ";
                         }
 
                         ms.Close();
@@ -301,10 +303,12 @@ namespace Notepad
                         var bytes = ms.ToArray();
                         for (int i = 0; i < bytes.Length; i++)
                         {
-                            if (0 < i && i % 5 == 0)
-                                content += "\n";
+                            content += string.Format("{0}", bytes[i].ToString("X2"));
 
-                            content += string.Format("{0} ", bytes[i].ToString("X2"));
+                            if (0 < i && i % 5 == 4)
+                                content += "\n";
+                            else
+                                content += " ";
                         }
 
                         ms.Close();
